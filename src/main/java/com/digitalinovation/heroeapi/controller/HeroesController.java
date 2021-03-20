@@ -5,6 +5,8 @@ import com.digitalinovation.heroeapi.document.Heroes;
 import com.digitalinovation.heroeapi.repository.HeroesRepository;
 import com.digitalinovation.heroeapi.service.HeroeService;
 import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,15 +18,15 @@ import static com.digitalinovation.heroeapi.constants.HeroesConstant.HEROES_ENDP
 @RestController
 @Slf4j
 public class HeroesController {
+	@Autowired
     private HeroeService heroeService;
-    private HeroesRepository heroesRepository;
+	
     private static final org.slf4j.Logger loggi = org.slf4j.LoggerFactory.getLogger(HeroesController.class);
 
-
-    public HeroesController(HeroeService heroeService, HeroesRepository heroesRepository) {
-        this.heroeService = heroeService;
-        this.heroesRepository = heroesRepository;
-    }
+//
+//    public HeroesController(HeroeService heroeServicey) {
+//        this.heroeService = heroeService;
+//    }
 
     @GetMapping(HEROES_ENDPOINT_LOCAL)
     public Flux<Heroes> getAllHeroes(){

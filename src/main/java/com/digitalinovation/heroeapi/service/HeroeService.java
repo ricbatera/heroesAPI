@@ -9,12 +9,12 @@ import reactor.core.publisher.Mono;
 
 @Service
 public class HeroeService {
+	@Autowired
+    HeroesRepository heroesRepository;
 
-    private final HeroesRepository heroesRepository;
-
-    public HeroeService(HeroesRepository heroesRepository) {
-        this.heroesRepository = heroesRepository;
-    }
+//    public HeroeService(HeroesRepository heroesRepository) {
+//        this.heroesRepository = heroesRepository;
+//    }
 
 
     public Flux<Heroes> findAll(){
