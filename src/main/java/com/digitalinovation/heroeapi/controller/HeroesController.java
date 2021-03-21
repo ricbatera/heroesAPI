@@ -36,7 +36,7 @@ public class HeroesController {
         loggi.info("Recuperando todos os Heróis");
         return heroeService.findAll();
     }
-    @GetMapping(HEROES_ENDPOINT_LOCAL+"/id")
+    @GetMapping(HEROES_ENDPOINT_LOCAL + "/{id}")
     public Mono<ResponseEntity<Heroes>>findById(@PathVariable String id){
         loggi.info("Buscando o Herói com id {}", id);
         return heroeService.findById(id)
@@ -51,11 +51,11 @@ public class HeroesController {
         return heroeService.save(heroe);
     }
 
-    @DeleteMapping(HEROES_ENDPOINT_LOCAL+"/id")
+    @DeleteMapping(HEROES_ENDPOINT_LOCAL+"/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public Mono<HttpStatus> deleteById(@PathVariable String id){
-        heroeService.deleteByIdHero(id);
         loggi.info("Deletando Heroi de ID {}", id);
+        heroeService.deleteByIdHero(id);
         return Mono.just(HttpStatus.NO_CONTENT);
     }
 }

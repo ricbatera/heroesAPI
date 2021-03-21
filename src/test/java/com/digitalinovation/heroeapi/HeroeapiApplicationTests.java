@@ -2,13 +2,20 @@ package com.digitalinovation.heroeapi;
 
 import com.digitalinovation.heroeapi.repository.HeroesRepository;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 import static com.digitalinovation.heroeapi.constants.HeroesConstant.HEROES_ENDPOINT_LOCAL;
 
+@RunWith(SpringRunner.class)
+@DirtiesContext
+@AutoConfigureWebTestClient
 @SpringBootTest
 class HeroeapiApplicationTests {
 	@Autowired
@@ -17,13 +24,10 @@ class HeroeapiApplicationTests {
 	@Autowired
 	HeroesRepository heroesRepository;
 
-	@Test
-	void contextLoads() {
-	}
 
 	@Test
 	public void getHeroByID(){
-		webTestClient.get().uri(HEROES_ENDPOINT_LOCAL.concat("/{id}"), 1)
+		webTestClient.get().uri(HEROES_ENDPOINT_LOCAL.concat("/{id}"), 2)
 				.exchange()
 				.expectStatus().isOk()
 				.expectBody();
@@ -31,14 +35,14 @@ class HeroeapiApplicationTests {
 
 	@Test
 	public void getHeroByIDNotFound(){
-		webTestClient.get().uri(HEROES_ENDPOINT_LOCAL.concat("/{id}"), 1)
+		webTestClient.get().uri(HEROES_ENDPOINT_LOCAL.concat("/{id}"), 10)
 				.exchange()
 				.expectStatus().isNotFound();
 	}
 
 	@Test
 	public void deletarHero(){
-		webTestClient.get().uri(HEROES_ENDPOINT_LOCAL.concat("/{id}"), 1)
+		webTestClient.delete().uri(HEROES_ENDPOINT_LOCAL.concat("/{id}"), 1)
 				.accept(MediaType.APPLICATION_JSON)
 				.exchange()
 				.expectStatus().isNoContent()

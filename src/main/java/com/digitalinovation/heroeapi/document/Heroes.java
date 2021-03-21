@@ -18,8 +18,8 @@ public class Heroes {
     private String id;
     @DynamoDBAttribute(attributeName = "nome")
     private String nome;
-    @DynamoDBHashKey(attributeName = "universo")
+    @DynamoDBAttribute(attributeName = "universo")
     private String universo;
-    @DynamoDBHashKey(attributeName = "filmes")
+    @DynamoDBAttribute(attributeName = "filmes")
     private int filmes;
 }

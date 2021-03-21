@@ -33,7 +33,7 @@ public class HeroesTable {
                 .build();
 
         DynamoDB dynamoDB = new DynamoDB(client);
-        String tableMane = "heroes_table3";
+        String tableMane = "heroes_table";
 
         try {
             System.out.println("Criando tabela, aguarde...");
