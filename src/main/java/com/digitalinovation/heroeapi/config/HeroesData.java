@@ -30,12 +30,12 @@ public class HeroesData {
                 .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(ENDPOINT_DYNAMO, REGION_DYNAMO))
                 .build();
         DynamoDB dynamoDB = new DynamoDB(client);
-        Table table = dynamoDB.getTable("heroes_table");
+        Table table = dynamoDB.getTable("heroes_table3");
         Item hero = new Item()
-                .withPrimaryKey("id", 1)
-                .withString("nome", "Mulher Maravilha")
+                .withPrimaryKey("id", "3")
+                .withString("nome", "Mulher Maravilha2")
                 .withString("universo","dc comics")
-                .withNumber("filems", 3);
+                .withNumber("filmes", 1);
         PutItemOutcome outcome = table.putItem(hero);
     }
 }

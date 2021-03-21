@@ -18,15 +18,18 @@ import static com.digitalinovation.heroeapi.constants.HeroesConstant.HEROES_ENDP
 @RestController
 @Slf4j
 public class HeroesController {
-	@Autowired
-    private HeroeService heroeService;
+
+    HeroeService heroeService;
+
+    HeroesRepository heroesRepository;
 	
     private static final org.slf4j.Logger loggi = org.slf4j.LoggerFactory.getLogger(HeroesController.class);
 
-//
-//    public HeroesController(HeroeService heroeServicey) {
-//        this.heroeService = heroeService;
-//    }
+
+    public HeroesController(HeroeService heroeService, HeroesRepository heroesRepository) {
+        this.heroeService = heroeService;
+        this.heroesRepository = heroesRepository;
+    }
 
     @GetMapping(HEROES_ENDPOINT_LOCAL)
     public Flux<Heroes> getAllHeroes(){
